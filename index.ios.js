@@ -108,6 +108,7 @@ var ToDoList = React.createClass({
         <Image
             source={{uri: 'http://www.feathersnfurshoppe.com/images/smallanimaldocs/Hamster.gif'}}
             style={{width: 100, height: 100}} />
+        <Text style={styles.text}>"饼 待办事项"</Text>
         <TextInput
           placeholder="请输入"
           style={{height: 40, borderColor: 'gray', borderWidth: 2}}
