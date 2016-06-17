@@ -102,6 +102,7 @@ var ToDoList = React.createClass({
       data: newData,
       dataSource: this.ds.cloneWithRows(newData),
     });
+    this.setState({text : ''});
   },
 
   deleteRow(rowId){
@@ -110,13 +111,17 @@ var ToDoList = React.createClass({
     this.setState({
       data: this.state.data,
       dataSource: this.ds.cloneWithRows(this.state.data),
-    })
+    });
   },
 
   renderRow(rowData, sectionId, rowId) {
     return(
     <SampleRow {...rowData} onDelete={()=>this.deleteRow(rowId)} style={styles.row} />
      );
+  },
+
+  clearText: function() {
+    this._textInput.setNativeProps({text: ''});
   },
 
    render() {
