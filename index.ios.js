@@ -26,14 +26,16 @@ var testData = [{"task":"当有待办事项存在时，我希望能看到待办�
 {"task":"当我点击待办事项右侧的关闭按钮时，待办事项应当被删除"}];
 
 var SampleRow = React.createClass({
-  getInitialState(){
-    return {
+     getInitialState(){
+      return {
       checked: false,
     };
   },
+
    _onPress: function() {
     this.setState({checked: !this.state.checked})
   },
+
 
   render() {    
     const source = this.state.checked ? 'https://www.drupal.org/files/project-images/Very-Basic-Checked-checkbox-icon.png' : 'http://www.clipartbest.com/cliparts/yTo/gj4/yTogj4zEc.png';
@@ -51,9 +53,11 @@ var SampleRow = React.createClass({
         <View style={styles.rightContainer}>
           <Text style={standard}>{this.props.task}</Text>
         </View>
-        <Image 
+        <TouchableHighlight onPress={this.props.onDelete}>
+            <Image 
               source={{uri: 'https://cdn1.iconfinder.com/data/icons/basic-ui-icon-rounded-colored/512/icon-02-128.png'}}
               style={{width: 20, height: 20}} />
+        </TouchableHighlight>
       </View>
     );
   }
@@ -75,16 +79,6 @@ var ToDoList = React.createClass({
   // componentDidMount() {
   //   var listViewScrollView = this.refs.listView.getScrollResponder();
   // },
-  
-  deleteRow(rowId){
-    console.log(this.state.data, rowId);
-    this.state.data.splice(rowId, 1);
-    console.log(this.state.data, rowId);
-    this.setState({
-      data: this.state.data,
-      dataSource: this.ds.cloneWithRows(this.state.data),
-    })
-  },
 
   addRow() {
     const newData = this.state.data.concat({task:this.state.text});
@@ -95,11 +89,19 @@ var ToDoList = React.createClass({
     });
   },
 
+  deleteRow(rowId){
+    console.log(this.state.data, rowId);
+    this.state.data.splice(rowId, 1);
+    console.log(this.state.data, rowId);
+    this.setState({
+      data: this.state.data,
+      dataSource: this.ds.cloneWithRows(this.state.data),
+    })
+  },
+
   renderRow(rowData, sectionId, rowId) {
     return(
-    <TouchableOpacity onPress={()=>this.deleteRow(rowId)}>
-    <SampleRow {...rowData} style={styles.row} />
-     </TouchableOpacity>
+    <SampleRow {...rowData} onDelete={()=>this.deleteRow(rowId)} style={styles.row} />
      );
   },
 
