@@ -16,6 +16,7 @@ var ReactNative = require('react-native');
 var {
   AppRegistry,
   StyleSheet,
+  ScrollView,
   ListView,
   Image,
   TouchableHighlight,
@@ -118,9 +119,9 @@ var ToDoList = React.createClass({
      );
   },
 
-  render() {
+   render() {
     return (
-      <View>
+      <View style={{flex:1, paddingTop: 20}}>
         <Text style={styles.text}>"饼 待办事项"</Text>
         <View style={styles.container}>
         <Image
@@ -144,10 +145,8 @@ var ToDoList = React.createClass({
   },
 });
 
-
 var styles = StyleSheet.create({
   container: {
-   flex: 1,
    flexDirection: 'row',
    justifyContent: 'center',
    alignItems: 'center',
@@ -174,8 +173,16 @@ var styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100
-  }
-
+  },
+   sectionHeader: {
+    backgroundColor: '#48D1CC'
+  },
+  sectionHeaderText: {
+    fontFamily: 'AvenirNext-Medium',
+    fontSize: 16,
+    color: 'white',
+    paddingLeft: 10
+  },
 });
 
 AppRegistry.registerComponent('ToDoList', () => ToDoList);
