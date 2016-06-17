@@ -37,6 +37,7 @@ var SampleRow = React.createClass({
 
   render() {    
     const source = this.state.checked ? 'https://www.drupal.org/files/project-images/Very-Basic-Checked-checkbox-icon.png' : 'http://www.clipartbest.com/cliparts/yTo/gj4/yTogj4zEc.png';
+    const standard = this.state.checked ? styles.text1 : styles.text;
     return (
       <View style={styles.container}>
         <TouchableHighlight
@@ -48,7 +49,7 @@ var SampleRow = React.createClass({
           </View>
         </TouchableHighlight>
         <View style={styles.rightContainer}>
-          <Text style={styles.text}>{this.props.task}</Text>
+          <Text style={standard}>{this.props.task}</Text>
         </View>
         <Image 
               source={{uri: 'https://cdn1.iconfinder.com/data/icons/basic-ui-icon-rounded-colored/512/icon-02-128.png'}}
@@ -149,10 +150,17 @@ var styles = StyleSheet.create({
     fontWeight: "100",
     color: 'black',
   },
+  text1: {
+    fontSize: 24,
+    fontWeight: "100",
+    color: 'black',
+    textDecorationLine: 'line-through'
+  },
   image: {
     width: 100,
     height: 100
   }
+
 });
 
 AppRegistry.registerComponent('ToDoList', () => ToDoList);
