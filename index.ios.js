@@ -49,10 +49,10 @@ var SampleRow = React.createClass({
         </TouchableHighlight>
         <View style={styles.rightContainer}>
           <Text style={styles.text}>{this.props.task}</Text>
-          <Image 
+        </View>
+        <Image 
               source={{uri: 'https://cdn1.iconfinder.com/data/icons/basic-ui-icon-rounded-colored/512/icon-02-128.png'}}
               style={{width: 20, height: 20}} />
-        </View>
       </View>
     );
   }
@@ -105,10 +105,12 @@ var ToDoList = React.createClass({
   render() {
     return (
       <View>
+        <Text style={styles.text}>"饼 待办事项"</Text>
+        <View style={styles.container}>
         <Image
             source={{uri: 'http://www.feathersnfurshoppe.com/images/smallanimaldocs/Hamster.gif'}}
-            style={{width: 100, height: 100}} />
-        <Text style={styles.text}>"饼 待办事项"</Text>
+            style={styles.image} />
+        </View>
         <TextInput
           placeholder="请输入"
           style={{height: 40, borderColor: 'gray', borderWidth: 2}}
@@ -134,6 +136,7 @@ var styles = StyleSheet.create({
    justifyContent: 'center',
    alignItems: 'center',
    backgroundColor: '#F5FCFF',
+   padding:20
   },
   rightContainer: {
     flex: 1,
@@ -146,6 +149,10 @@ var styles = StyleSheet.create({
     fontWeight: "100",
     color: 'black',
   },
+  image: {
+    width: 100,
+    height: 100
+  }
 });
 
 AppRegistry.registerComponent('ToDoList', () => ToDoList);
