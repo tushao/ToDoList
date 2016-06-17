@@ -4,6 +4,12 @@
  * @flow
  */
 
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ * @flow
+ */
+
 var React = require('react');
 var ReactNative = require('react-native');
 
@@ -33,9 +39,17 @@ var SampleRow = React.createClass({
   },
 
    _onPress: function() {
-    this.setState({checked: !this.state.checked})
+    this.setState({
+      checked: !this.state.checked,
+    });
   },
 
+  componentWillReceiveProps() {
+    console.log(this.props.checked);
+    this.setState({
+      checked: this.props.checked,
+    });
+  },
 
   render() {    
     const source = this.state.checked ? 'https://www.drupal.org/files/project-images/Very-Basic-Checked-checkbox-icon.png' : 'http://www.clipartbest.com/cliparts/yTo/gj4/yTogj4zEc.png';
@@ -66,7 +80,7 @@ var SampleRow = React.createClass({
 var ToDoList = React.createClass({
   getInitialState: function() {
     this.ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
+      rowHasChanged: (r1, r2) => r1.task !== r2.task
     });
 
     return {
@@ -90,7 +104,6 @@ var ToDoList = React.createClass({
   },
 
   deleteRow(rowId){
-    console.log(this.state.data, rowId);
     this.state.data.splice(rowId, 1);
     console.log(this.state.data, rowId);
     this.setState({
